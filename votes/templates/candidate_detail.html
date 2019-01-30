@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block head%}
+  {{ post.title }}
+{% endblock %}
+{% block body %}
+  <a href="/votes" class="btn waves-effect waves-light">
+    Back
+  </a>
+
+  <a href="{% url 'votes:candidate_update' candidate_id=candidate.id%}" class="btn waves-effect waves-light">
+    Update Candidate
+  </a>
+
+  <div class="row">
+    <h3>Candidate Profile</h3>
+    <br>
+    <div class="input-field col s6">
+      <input id="first_name" disabled type="text" class="validate" value="{{ candidate.firstname }}">
+      <label for="first_name">First name</label>
+    </div>
+    <div class="input-field col s6">
+      <input id="last_name" disabled type="text" class="validate" value="{{ candidate.lastname}}">
+      <label for="last_name">Last name</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s6">
+      <input id="position" disabled type="text" class="validate" value="{{ candidate.position}}">
+      <label for="position">Position</label>
+    </div>
+    <div class="input-field col s6">
+      <input id="birthdate" disabled type="text" class="validate" value="{{ candidate.birthdate }}">
+      <label for="birthdate">Birthday</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s6">
+      <input id="platform" disabled type="text" class="validate" value="{{ candidate.platform}}">
+      <label for="platform">Platform</label>
+    </div>
+    <div class="input-field col s6">
+      <input id="votes" disabled type="text" class="validate" value="{{ candidate.votes.all.count }}">
+      <label for="votes"># Of Votes</label>
+    </div>
+  </div>
+  <div class="row">
+    <a href="{% url 'votes:vote' candidate_id=candidate.id%}" class="btn waves-effect waves-light">
+      Vote
+    </a>
+  </div>
+
+
+
+  {% endblock%}
+  {# <ol class="collection">
+    {% for candidate in candidates%}
+      <li class="collection-item"></li>
+    {% endfor %}
+  </ol>
+
+  {% for choice in question.choices.all%}
+    {{ choice.choice_text }}
+    | votes :
+    {{ choice.votes}} <br />
+  {% endfor %} #}

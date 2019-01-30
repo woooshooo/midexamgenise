@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head%}
+  Add Candidate
+{% endblock %}
+{% block body %}
+
+  <a href="/votes" class="btn waves-effect waves-light">
+    Back
+  </a>
+  <form class="form" action="{% url 'votes:candidate_create' %}" method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+      {{ field.errors }}
+      <div class="input-field col s6">
+        {{ field.label }}
+        {{ field }}
+      </div>
+    {% endfor %}
+
+    <button class="btn btn-primary waves-effect waves-light" type="submit" value="Add">Add Candidate</button>
+  </form>
+{% endblock %}
